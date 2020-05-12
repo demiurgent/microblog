@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for post in posts %}
+        <p style="margin-left: 25;text-align: center">
+            <font size="5"><b>{{ post["title"] }}</b></font>
+            <div><font size="4">{{ post["description"] }}</font></div>
+            <div><font size="2">Published: {{ post["publishedAt"] }}</font></div>
+            <div><font size="2"><i>{{ post["author"] }}</i></font></div>
+            <div><a href={{ post["url"] }} target="_blank" rel="noopener noreferrer">Read Post</a></div>
+        </p>
+    {% endfor %}
+{% endblock %}

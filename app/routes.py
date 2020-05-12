@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template, flash, redirect, url_for
 from app.forms import LoginForm
+from app import news2
 
 @app.route('/')
 @app.route('/index')
@@ -17,6 +18,11 @@ def index():
         }
     ]
     return render_template('index.html', title='Home', user=user, posts=posts)
+
+@app.route('/news')
+def news():
+    news_data = news2.top_headlines["articles"]
+    return render_template('news.html', title='Corona News', posts=news_data)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
