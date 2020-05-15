@@ -2,11 +2,21 @@ import requests
 import pprint
 from bs4 import BeautifulSoup
 
-page = requests.get("https://korrespondent.net")
 
-soup = BeautifulSoup(page.content, 'html.parser')
+def corona_news():
 
-results = soup.find_all("a",
-                        string=lambda text: "COVID" in text.lower() if text is not None else False)
+    page = requests.get("https://korrespondent.net")
+    soup = BeautifulSoup(page.content, 'html.parser')
+    markers=("коронавирус", "-19", "SARS")
+    results = soup.find_all("div",
+                        string=lambda text: True if (text is not None and any(m in text.lower() for m in markers)) else False)
+    articles = {}
+    for r in results:
+        key = r.find("a")["href"]
+        raw_value = r.parent.find("div", class_="article__time")
+        value = raw_value.text if raw_value is not None else "NA"
+        articles[key] = value
 
-print(results[0:2])
+    return articles
+
+print(corona_news())
