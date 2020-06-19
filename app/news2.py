@@ -1,6 +1,6 @@
 from newsapi import NewsApiClient
 
-# Init
+# Init/Users/micky/Documents/madpaws/ta/new_app_app/cypress/cypress/integration/mobile-ionic/browserTests/test.js
 newsapi = NewsApiClient(api_key='0a9d300e652e44d88bd252ab440503da')
 
 
